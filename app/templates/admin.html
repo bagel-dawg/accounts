@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="contents">
+    <h1>Hello Admin User, {{ username }} </h1><br />
+
+    {% include "details-table.html" %}
+
+
+    <h1> Administrative Options</h1>
+    <div class="admin-options" >
+            <div class="left-div">
+                <h1>User Info Lookup</h1>
+                <form action="" method="post" novalidate class="login-form">
+                        {{ user_info_lookup.hidden_tag() }}
+                        <p>
+                            {{ user_info_lookup.username.label }}<br>
+                            {{ user_info_lookup.username(size=32) }}<br>
+                            {% for error in user_info_lookup.username.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                            {% endfor %}
+                        </p>
+                        <p>
+                            {{ user_info_lookup.uin.label }}<br>
+                            {{ user_info_lookup.uin(size=32) }}<br>
+                            {% for error in user_info_lookup.uin.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                            {% endfor %}
+                        </p>
+                        <p>
+                            {{ user_info_lookup.oduemail.label }}<br>
+                            {{ user_info_lookup.oduemail(size=32) }}<br>
+                            {% for error in user_info_lookup.oduemail.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                            {% endfor %}
+                        </p>
+                        <p>
+                            {{ user_info_lookup.uid.label }}<br>
+                            {{ user_info_lookup.uid(size=32) }}<br>
+                                
+                            {% for error in user_info_lookup.uid.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                            {% endfor %}
+                        </p>
+                        <p>{{ user_info_lookup.submit() }}</p>
+            </div>
+            <div class="right-div">
+                UnArchive User
+            </div>
+            <div class="left-div">
+                Create User Account
+            </div>
+            <div class="right-div">
+                Other
+            </div>
+    </div>
+</div>
+
+
+  
+
+{% endblock %}

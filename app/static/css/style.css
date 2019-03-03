@@ -1,0 +1,268 @@
+body {
+  background: white;
+  font-size: 100%;
+}
+li a {
+  color: green;
+}
+.banner {
+  background-color: rgb(0,55,104);
+  height: 100%;
+  width: 100%;
+  height: 5%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  font-family: "Arial", Helvetica, sans-serif;
+}
+.banner-logo {
+  height: 30px;
+  width: 30px;
+  top: 10px;
+  left: 10px;
+  position: absolute;
+}
+.banner-text {
+  left: 60px;
+  top: 10px;
+  height: 30px;
+  position: absolute;
+  font-size: 30px;
+  color: white;
+}
+.logout-button {
+  height: 30px;
+  position: absolute;
+  color: white;
+  top: 10px;
+  right: 60px;
+  font-size: 30px;
+}
+.contents {
+  position: absolute;
+  overflow: auto;
+  top: 5%;
+  bottom: 10%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  font-family: "Arial", Helvetica, sans-serif;
+}
+.tos-frame {
+  position: absolute;
+  margin-right: auto;
+  margin-left: auto;
+  top: 75px;
+  bottom: 100px;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  font-family: "Arial", Helvetica, sans-serif;
+  height: 500px;
+  width: 75%;
+}
+.contents ul {
+  display: table;
+  max-width: 200px;
+  margin: 0 auto;
+  padding-bottom: 15px;
+}
+.contents h1 {
+  text-align: center;
+  color: rgb(0,55,104);
+}
+.contents form {
+  text-align: center;
+}
+.contents label {
+  width: 200px;
+  text-align: center;
+  display: inline-block;
+  padding-top: 2px;
+  padding-bottom:2px;
+}
+.contents input {
+  margin: 2px;
+}
+
+
+#details-table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#details-table td, #details-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#details-table tr:nth-child(even){background-color: #f2f2f2;}
+
+#details-table tr:hover {background-color: #ddd;}
+
+#details-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #3669f4;
+  color: white;
+}
+
+
+#error {
+  text-align: center;
+  color: red;
+}
+#toslabel {
+  width: 500px;
+}
+#gradlabel {
+  width: 150px;
+}
+#ugradlabel {
+  width: 150px;
+}
+#main-contents {
+  height: 500px;
+}
+#acc-detail-contents {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+#acc-create-blurb {
+  padding-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+#failed-error {
+  position: absolute;
+  text-align: center;
+  color: red;
+  top: 30%;
+}
+#reset-email-blurb {
+  position: absolute;
+  text-align: center;
+  top: 30%;
+}
+
+.admin-options {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.left-div{
+  width: 50%;
+  float: left;
+}
+.right-div{
+
+  
+}
+
+
+.login-box-shadow {
+  height: 100%;
+  width: 30%;
+  background-color: rgb(213,220,225);
+}
+#main-login-box-shadow {
+  position: relative;
+  display: block;
+  top: 10%;
+  margin-left: auto;
+  margin-right: auto;
+}
+#acc-create-login-box-shadow {
+  position: absolute;
+  display: block;
+  top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.login-box {
+  height: 100%;
+  width: 100%;
+  top: 5px;
+  left: 5px;
+  background-color: rgb(219,224,227);
+  font-family: "Arial", Helvetica, sans-serif;
+}
+.login-box h2 {
+  position: relative;
+  text-align: center;
+  height: 30px;
+  top: 20px;
+  color: rgb(0,55,104);
+}
+.login-form {
+  position: relative;
+  width: 400px;
+  height: 250px;
+  margin-left: auto;
+  margin-right: auto;
+  top: 30px;
+}
+.login-form a {
+  font-size: 0.8em;
+  color: rgb(0,55,104);
+}
+
+.footer {
+  height: 100%;
+  width: 100%;
+  height: 10%;
+  position: fixed;
+  z-index: 10;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  font-family: "Arial", Helvetica, sans-serif;
+  background-color: rgb(205,209,212);
+}
+.footer-link {
+  color: rgb(0,55,104);
+}
+
+/* The alert message box */
+.alert-error {
+    padding: 20px;
+    background-color: #f44336; /* Red */
+    color: white;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.alert-success {
+  padding: 20px;
+  background-color: #3669f4; /* Red */
+  color: white;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* The close button */
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+    color: black;
+}

@@ -1,0 +1,57 @@
+<html>
+    <head>
+      {%  if title %}
+        <title>{{ title }}</title>
+      {% endif %}
+      
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" /> 
+
+
+
+  <div class="banner">
+    <a href="{{ url_for('dashboard') }}">
+      <img src="{{ url_for('static', filename='images/ODU_LOGO.jpg') }}" class="banner-logo" />
+      <span class="banner-text">
+        ODUCS Account Management
+      </span>
+    </a>
+
+    {% if not current_user or current_user.is_anonymous %}
+
+    <a href="{{ url_for('login') }}">
+      <span class="logout-button">
+        Log In
+      </span>
+    </a>
+
+    {% else %}
+
+
+    <a href="{{ url_for('logout') }}">
+      <span class="logout-button">
+        Log Out
+      </span>
+    </a>
+
+    {% endif %}
+
+
+   </div>
+
+
+
+
+</head>
+<body>
+
+  {% block content %}{% endblock %}
+
+
+
+  <div class="footer"><hr />
+    <p class="footer-text">Have a question or need assistance? Email us at root@cs.odu.edu.</p>
+    <p class="footer-link"><a href="https://www.cs.odu.edu">CS Home Page</a></p>
+  </div>
+
+  </body>
+</html>

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="contents" id="main-contents">
+    <div class="login-box-shadow" id="main-login-box-shadow">
+      <div class="login-box"><h2>Choose a Password</h2>
+        <h3 style="display:block;margin: auto;max-width:250px;">Complexity Requirements:</h3>
+        <ul>
+        <li>Not contain the user's account name (First Initial + Last name) or parts of your first or last name.</li>
+        <li>6 Characters Minimum</li>
+        <li>1 Uppercase Letter</li>
+        <li>1 Lowercase Letter</li>
+        <li>1 Number or Special Character (!@#$%&*-=+_)</li>
+        </ul>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="alert-{{ category }}">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                {{message}}
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+  
+            <form action="" method="post" novalidate class="login-form">
+                {{ form.hidden_tag() }}
+                <p>
+                    {{ form.pw.label }}<br>
+                    {{ form.pw(size=32) }}<br>
+                    {% for error in form.pw.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ form.pw_check.label }}<br>
+                    {{ form.pw_check(size=32) }}<br>
+                    {% for error in form.pw_check.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </p>
+                <p>{{ form.submit() }}</p>
+                <a href="{{ url_for('finduser') }}">Forgot Username</a><br />
+                <a href="{{ url_for('pwreset') }}">Forgot Password</a><br />  
+                <a href="{{ url_for('request') }}">Create an Account</a><br />   
+            </form>
+        </div>
+    </div>
+</div>
+  
+
+{% endblock %}

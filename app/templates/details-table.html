@@ -1,0 +1,51 @@
+    <div id="acc-detail-contents">
+        
+        <table id=details-table>
+          <tr> 
+            <th colspan="2"> Account Details </th>
+          </tr>
+        <tr>
+          <td><strong>First Name:</strong> </td>
+          <td>{{ attributes.givenName.value }} </td>
+        </tr>
+        <tr>
+          <td><strong>Last Name:</strong> </td>
+          <td>{{ attributes.sn.value }} </td>
+        </tr>
+        <tr>
+          <td><strong>CS Username:</strong> </td>
+          <td>{{ attributes.sAMAccountName.value }} </td>
+        </tr>
+        <tr>
+          <td><strong>MIDAS Email:</strong> </td>
+          <td>{{ attributes.extensionAttribute1.value }} </td>
+        </tr>
+        <tr>
+          <td><strong>UIN:</strong> </td>
+          <td>{{ attributes.employeeNumber.value }} </td>
+        </tr>
+        <tr>
+            <td><strong>Group Membership:</strong> </td>
+            <td>
+                
+                <ul>
+                {% for group in attributes.memberOf %}
+                
+                  <li>
+                  {{  group.split(',')[0][3:] }}
+                  </li>
+                {% endfor %}
+              </ul>                  
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Password Last Set:</strong> </td>
+            <td>{{ attributes.pwdLastSet.value }} </td>
+        </tr>
+        
+        <tr>
+            <td><strong>Creation Date:</strong> </td>
+            <td>{{ attributes.whenCreated.value }} </td>
+        </tr>
+      </table>
+    </div>
