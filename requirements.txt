@@ -1,4 +1,4 @@
-﻿alembic==1.0.8
+alembic==1.0.8
 astroid==2.2.4
 Click==7.0
 colorama==0.4.1
