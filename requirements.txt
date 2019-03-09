@@ -1,0 +1,7 @@
+flask==1.0.2
+flask_sqlalchemy==2.3.2
+flask_migrate==2.4.0
+flask_login==0.4.1
+flask_ldap3_login==0.9.16
+apscheduler==3.5.3
+mysqlclient==1.4.2.post1
