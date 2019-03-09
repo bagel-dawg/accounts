@@ -1,0 +1,36 @@
+version: '3.7'
+
+services:
+  accounts:
+    container_name: accounts
+    image: accounts:dev
+    build:
+      context: .
+    env_file: docker-env/.accounts-env
+    ports:
+      - 5000:5000
+    depends_on: 
+      - accounts-mysql
+  accounts-mysql:
+    container_name: accounts-mysql
+    image: mysql:5.7
+    env_file: docker-env/.accounts-mysql-env
+    volumes:
+      - accounts-mysql:/var/lib/mysql
+  accounts-openldap:
+    container_name: accounts-openldap
+    image: osixia/openldap:latest
+    env_file: docker-env/.accounts-openldap-env
+    ports:
+      - 636:636
+      - 389:389
+    depends_on: 
+      - accounts
+    volumes:
+      - "./openldap/ldif/openldap.test.ldif:/container/service/slapd/assets/config/bootstrap/ldif/custom/openldap.test.ldif"
+    # - "./openldap/ldif/03-memberOf.ldif:/container/service/slapd/assets/config/bootstrap/ldif/03-memberOf.ldif"
+    command: --copy-service
+
+volumes:
+  accounts-mysql:
+    external: false

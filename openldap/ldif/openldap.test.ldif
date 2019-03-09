@@ -1,0 +1,43 @@
+﻿# dn: ou\=Accounts\,dc\=example\,dc\=com
+dn: ou=Accounts,dc=example,dc=com
+objectClass: top
+objectClass: organizationalUnit
+ou: Accounts
+description: Container for user entries
+
+# dn: cn\=testGroup\,dc\=example\,dc\=com
+dn: cn=testGroup,dc=example,dc=com
+gidNumber: 1
+objectClass: posixGroup
+objectClass: top
+cn: testGroup
+memberUid: cn=Diamon,ou=Accounts,dc=example,dc=com
+memberUid: cn=Ryan,ou=Accounts,dc=example,dc=com
+
+# dn: cn\=Diamon\,ou\=Accounts\,dc\=example\,dc\=com
+dn: cn=Diamon,ou=Accounts,dc=example,dc=com
+cn: Diamon
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+mail: diamon@yeahbuddy.com
+uid: 1
+displayName: diamon
+givenName: Diamon
+sn: Wiggins
+userPassword: freeCandy!
+
+# dn: cn\=Ryan\,ou\=Accounts\,dc\=example\,dc\=com
+dn: cn=Ryan,ou=Accounts,dc=example,dc=com
+cn: Ryan
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+mail: ryan@yeahbuddy.com
+uid: 1
+displayName: Ryan
+givenName: Ryan
+sn: Knauer
+userPassword: freeCandy!

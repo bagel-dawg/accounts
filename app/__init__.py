@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 import logging
+import MySQLdb
 
 from flask_ldap3_login import LDAP3LoginManager
 from flask_login import LoginManager, login_user, UserMixin, current_user
