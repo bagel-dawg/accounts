@@ -1,0 +1,10 @@
+SECRET_KEY=secretkey
+SQLALCHEMY_DATABASE_URI=mysql://root:freeCandy@accounts-mysql/accounts
+SQLALCHEMY_TRACK_MODIFICATIONS=False
+ENROLL_FILE=enrollfile.txt
+LDAP_HOST=openldap
+LDAP_PORT=389
+LDAP_BIND_USER_DN=cn=admin,dc=example,dc=com
+LDAP_BIND_USER_PW=admin
+LDAP_SEARCH_BASE=dc=example,dc=com
+SECURITY_PASSWORD_SALT=salt
