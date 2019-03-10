@@ -1,6 +1,5 @@
 #Config File
 .flaskenv
-config.py
 app.db
 
 #Log file
