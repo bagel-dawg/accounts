@@ -12,3 +12,4 @@ class Config(object):
     LDAP_BIND_USER_PW = os.environ.get('LDAP_BIND_PW') or ''
     LDAP_SEARCH_BASE = os.environ.get('LDAP_SEARCH_BASE') or ''
     SECURITY_PASSWORD_SALT = os.environ.get('SECURITY_PASSWORD_SALT') or ''
+    APP_ADMIN_GROUP = os.environ.get('APP_ADMIN_GROUP') or ''

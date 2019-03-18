@@ -9,13 +9,11 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Sign In')
 
 class FindUser(FlaskForm):
-    oduemail = StringField('Email', validators=[DataRequired(),Email(message='You must enter a valid email address.')])
-    uin = StringField('UIN', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(),Email(message='You must enter a valid email address.')])
     submit = SubmitField('Submit')
 
 class PWReset(FlaskForm):
-    oduemail = StringField('Email', validators=[DataRequired(),Email(message='You must enter a valid email address.')])
-    uin = StringField('UIN', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(),Email(message='You must enter a valid email address.')])
     submit = SubmitField('Submit')
 
 class PWChoose(FlaskForm):
@@ -24,14 +22,11 @@ class PWChoose(FlaskForm):
     submit = SubmitField('Submit')
 
 class Account_Request(FlaskForm):
-    oduemail = StringField('Email', validators=[DataRequired(),Email(message='You must enter a valid email address.')])
-    uin = StringField('UIN', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(),Email(message='You must enter a valid email address.')])
     accepted = BooleanField('I Agree to the Terms of Service', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
 class Admin_User_Info_Lookup(FlaskForm):
-    oduemail = StringField('Email')
-    uin = IntegerField('UIN')
-    username = StringField('CS Username')
-    uidNumber = IntegerField('Unix UID')
+    email = StringField('Email')
+    username = StringField('Username')
     submit = SubmitField('Submit')
