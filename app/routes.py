@@ -47,7 +47,7 @@ def admin():
     #get_user_info = Admin_User_Info_Lookup()
     #Need to populate memberOf in OpenLDAP
     if not helpers.is_admin(current_user.username):
-        flash('This CS Account does not have access to the Admin Dashboard.', category='error')
+        flash('This account does not have access to the Admin Dashboard.', category='error')
         return redirect(url_for('login'))
 
 #    if get_user_info.validate_on_submit():
@@ -232,7 +232,7 @@ def confirm_email(token):
             flash(returned['return_message'], category=returned['return_category'])
             return redirect(url_for('login'))
         else:
-            returned['return_message'] = 'A creation error has occured when attempting to create your account. Please contact root@cs.odu.edu and take note of the time of this error.'
+            returned['return_message'] = 'A creation error has occured when attempting to create your account. Please contact your Systems Administrator and take note of the time of this error.'
             returned['return_category'] = 'error'
             flash(returned['return_message'], category=returned['return_category'])
             return redirect(url_for('login'))

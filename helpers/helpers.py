@@ -54,13 +54,13 @@ def retrieve_username(email):
 
 
     if status['archived']:
-        message = 'This CS Account has been archived, however, the username is: %s. Please contact your Systems Administrator.' % conn.entries[0].sAMAccountName.value
+        message = 'This account has been archived, however, the username is: %s. Please contact your Systems Administrator.' % conn.entries[0].sAMAccountName.value
         category = 'error'
     elif status['exists']:
-        message = 'Your CS Username is: %s' % conn.entries[0].sAMAccountName.value
+        message = 'Your username is: %s' % conn.entries[0].sAMAccountName.value
         category = 'success'
     else:
-        message = 'A CS Account associated with the email: %s could not be found.' % email
+        message = 'A account associated with the email: %s could not be found.' % email
         category = 'error'
 
     conn.unbind()
