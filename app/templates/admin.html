@@ -22,24 +22,9 @@
                             {% endfor %}
                         </p>
                         <p>
-                            {{ user_info_lookup.uin.label }}<br>
-                            {{ user_info_lookup.uin(size=32) }}<br>
-                            {% for error in user_info_lookup.uin.errors %}
-                            <span style="color: red;">[{{ error }}]</span>
-                            {% endfor %}
-                        </p>
-                        <p>
-                            {{ user_info_lookup.oduemail.label }}<br>
-                            {{ user_info_lookup.oduemail(size=32) }}<br>
-                            {% for error in user_info_lookup.oduemail.errors %}
-                            <span style="color: red;">[{{ error }}]</span>
-                            {% endfor %}
-                        </p>
-                        <p>
-                            {{ user_info_lookup.uid.label }}<br>
-                            {{ user_info_lookup.uid(size=32) }}<br>
-                                
-                            {% for error in user_info_lookup.uid.errors %}
+                            {{ user_info_lookup.email.label }}<br>
+                            {{ user_info_lookup.email(size=32) }}<br>
+                            {% for error in user_info_lookup.email.errors %}
                             <span style="color: red;">[{{ error }}]</span>
                             {% endfor %}
                         </p>
