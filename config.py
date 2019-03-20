@@ -13,3 +13,11 @@ class Config(object):
     LDAP_SEARCH_BASE = os.environ.get('LDAP_SEARCH_BASE') or ''
     SECURITY_PASSWORD_SALT = os.environ.get('SECURITY_PASSWORD_SALT') or ''
     APP_ADMIN_GROUP = os.environ.get('APP_ADMIN_GROUP') or ''
+    SMTP_HOST = os.environ.get('SMTP_HOST') or ''
+    SMTP_USERNAME = os.environ.get('SMTP_USERNAME') or ''
+    SMTP_PASSWORD = os.environ.get('SMTP_PASSWORD') or ''
+    SMTP_PORT = os.environ.get('SMTP_PORT') or ''
+    SMTP_TLS = os.environ.get('SMTP_TLS') or True
+    SMTP_FROM_ADDRESS = os.environ.get('SMTP_FROM_ADDRESS') or ''
+    SMTP_LOGIN_REQUIRED = os.environ.get('SMTP_LOGIN_REQUIRED') or True
+    SMTP_IGNORE_CERT = os.environ.get('SMTP_IGNORE_CERT') or True
