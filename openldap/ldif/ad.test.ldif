@@ -1,0 +1,78 @@
+﻿# dn: CN\=Users\,DC\=example\,DC\=com
+dn: CN=Users,DC=example,DC=com
+changetype: add
+objectClass: mstop
+objectClass: container
+instanceType: 4
+objectCategory: cn=microsoftobjectclass,cn=schema,cn=config
+cn: Users
+objectGUID: vAiImMWHfU2cTi7pnx1JvA==
+
+# dn: CN\=Accounts Admins\,CN\=Users\,DC\=example\,DC\=com
+dn: CN=Accounts Admins,CN=Users,DC=example,DC=com
+changetype: add
+objectClass: mstop
+objectClass: group
+objectClass: customActiveDirectoryGroup
+instanceType: 4
+objectCategory: cn=microsoftobjectclass,cn=schema,cn=config
+cn: Accounts Admins
+member: CN=Diamon Wiggins,CN=Users,DC=example,DC=com
+member: CN=Ryan Knauer,CN=Users,DC=example,DC=com
+distinguishedName: CN=Accounts Users,CN=Users,DC=example,DC=com
+name: Accounts Admins
+objectGUID: QM32dZYUrk6IOmspiKp9/A==
+objectSid:: AQUAAAAAAAUVAAAAorr8uxYvhSpsw0NEkwQAAA==
+sAMAccountName: accounts-admins
+sAMAccountType: 268435456
+groupType: -2147483646
+
+# dn: CN\=Diamon Wiggins\,CN\=Users\,DC\=example\,DC\=com
+dn: CN=Diamon Wiggins,CN=Users,DC=example,DC=com
+changetype: add
+objectClass: mstop
+objectClass: person
+objectClass: organizationalPerson
+objectClass: user
+objectClass: customActiveDirectoryUser
+instanceType: 4
+objectCategory: cn=microsoftobjectclass,cn=schema,cn=config
+cn: Diamon Wiggins
+givenName: Diamon
+sn: Wiggins
+distinguishedName: CN=Diamon Wiggins,CN=Users,DC=example,DC=com
+displayName: Diamon Wiggins
+memberOf: CN=Accounts Admins,CN=Users,DC=example,DC=com
+name: Diamon Wiggins
+objectGUID: +WmpuqHkHEq1w3p0bdRu/w==
+objectSid:: AQUAAAAAAAUVAAAAorr8uxYvhSpsw0NEUAQAAA==
+sAMAccountName: dwiggins
+sAMAccountType: 805306368
+userPrincipalName: dwiggins@example.com
+mail: dwiggins@example.com
+mailNickname: dwiggins
+
+# dn: CN\=Ryan Knauer\,CN\=Users\,DC\=example\,DC\=com
+dn: CN=Ryan Knauer,CN=Users,DC=example,DC=com
+changetype: add
+objectClass: mstop
+objectClass: person
+objectClass: organizationalPerson
+objectClass: user
+objectClass: customActiveDirectoryUser
+instanceType: 4
+objectCategory: cn=microsoftobjectclass,cn=schema,cn=config
+cn: Ryan Knauer
+sn: Knauer
+givenName: Ryan
+distinguishedName: CN=Ryan Knauer,CN=Users,DC=example,DC=com
+displayName: Ryan Knauer
+memberOf: CN=Accounts Admins,CN=Users,DC=example,DC=com
+name: Ryan Knauer
+objectGUID: SUfYkdfIpE2ryHXu4sNWmw==
+objectSid:: AQUAAAAAAAUVAAAAorr8uxYvhSpsw0NEWgQAAA==
+sAMAccountName: rknauer
+sAMAccountType: 805306368
+userPrincipalName: rknauer@example.com
+mail: rknauer@example.com
+mailNickname: rknauer

@@ -8,3 +8,4 @@ LDAP_BIND_USER_DN=cn=admin,dc=example,dc=com
 LDAP_BIND_USER_PW=admin
 LDAP_SEARCH_BASE=dc=example,dc=com
 SECURITY_PASSWORD_SALT=salt
+APP_ADMIN_GROUP="CN=Accounts Admins,CN=Users,DC=example,DC=com"

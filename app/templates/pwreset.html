@@ -18,16 +18,9 @@
             <form action="" method="post" novalidate class="login-form">
                 {{ form.hidden_tag() }}
                 <p>
-                    {{ form.oduemail.label }}<br>
-                    {{ form.oduemail(size=32) }}<br>
-                    {% for error in form.oduemail.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                    {% endfor %}
-                </p>
-                <p>
-                    {{ form.uin.label }}<br>
-                    {{ form.uin(size=32) }}<br>
-                    {% for error in form.uin.errors %}
+                    {{ form.email.label }}<br>
+                    {{ form.email(size=32) }}<br>
+                    {% for error in form.email.errors %}
                     <span style="color: red;">[{{ error }}]</span>
                     {% endfor %}
                 </p>

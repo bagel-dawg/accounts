@@ -1,0 +1,15 @@
+# Clash with OpenLdap: 2.16.840.1.113730.3.1.34 NAME 'ref'
+attributetype ( 2.16.840.1.113730.3.1.34.0
+	NAME 'middleName'
+	SYNTAX '1.3.6.1.4.1.1466.115.121.1.15'
+	SINGLE-VALUE )
+
+attributetype ( 2.16.840.1.113730.3.1.35
+	NAME 'thumbnailPhoto'
+	SYNTAX '1.3.6.1.4.1.1466.115.121.1.40'
+	SINGLE-VALUE )
+
+attributetype ( 2.16.840.1.113730.3.1.36
+	NAME 'thumbnailLogo'
+	SYNTAX '1.3.6.1.4.1.1466.115.121.1.40'
+	SINGLE-VALUE )

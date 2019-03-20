@@ -27,8 +27,13 @@ services:
     depends_on: 
       - accounts
     volumes:
+      - "./openldap/ldif/ad.test.ldif:/container/service/slapd/assets/config/bootstrap/ldif/custom/ad.test.ldif"
       - "./openldap/ldif/openldap.test.ldif:/container/service/slapd/assets/config/bootstrap/ldif/custom/openldap.test.ldif"
-    # - "./openldap/ldif/03-memberOf.ldif:/container/service/slapd/assets/config/bootstrap/ldif/03-memberOf.ldif"
+      - "./openldap/schema/microsoftattributetype.schema:/container/service/slapd/assets/config/bootstrap/schema/microsoftattributetype.schema"
+      - "./openldap/schema/microsoftattributetypestd.schema:/container/service/slapd/assets/config/bootstrap/schema/microsoftattributetypestd.schema"
+      - "./openldap/schema/microsoftobjectclass.schema:/container/service/slapd/assets/config/bootstrap/schema/microsoftobjectclass.schema"
+      - "./openldap/ldif/03-memberOf.ldif:/container/service/slapd/assets/config/bootstrap/ldif/03-memberOf.ldif"
+      - "./openldap/ldif/05-index.ldif:/container/service/slapd/assets/config/bootstrap/ldif/05-index.ldif"
     command: --copy-service
 
 volumes:

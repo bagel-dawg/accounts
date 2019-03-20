@@ -1,7 +1,6 @@
 #Short, useful function that may or may not deserve their own files.
-from app import app,db,logging
+from app import app,logging
 from config import Config
-from app.models import EnrollFile
 from ldap3 import Server, Connection, SUBTREE, MODIFY_ADD, MODIFY_REPLACE
 from itsdangerous import URLSafeTimedSerializer
 import re
@@ -18,60 +17,55 @@ def AD_Connect_SSL():
   return Connection(server, user=dn, password=pw, auto_bind=True, return_empty_attributes=True)
 
 
-def check_exists_or_archived( uin='', email='', sam='' ):
-    conn = AD_Connect_SSL()
-    s_base = app.config['LDAP_BASE_DN']
-    archived_base = app.config['LDAP_ARCHIVED_BASE']
+def check_exists_or_archived(email):
+    exists = False
+    archived = False
+    absent = True
+    if email:
+        s_filter = '(mail='+str(email)+')'
 
-    if (str(uin) is not '') & (email is not ''):
-        s_filter = '(&(extensionAttribute1='+str(email)+')(employeeNumber='+str(uin)+'))'
+        s_base = app.config['LDAP_BASE_DN']
+        archived_base = app.config['LDAP_ARCHIVED_BASE']
     
-    if sam is not '':
-        s_filter='(&(objectClass=person)(sAMAccountName='+str(sam)+'))'
-
-    conn.search(search_base=s_base, search_filter=s_filter, search_scope=SUBTREE, attributes = ['sAMAccountName'])
-
-    if len(conn.entries) < 1:
-        exists = False
-        archived = False
-    else:
-        #If there is one or more extries, the account exists.
-        exists = True
-        archived = False
-        #Now we need to check if the existing account is archived or not.
-        conn.search(search_base=archived_base, search_filter=s_filter, search_scope=SUBTREE, attributes = ['sAMAccountName'])
-        if len(conn.entries) >= 1:
+        conn = AD_Connect_SSL()
+        conn.search(search_base=s_base, search_filter=s_filter, search_scope=SUBTREE, attributes = ['distinguishedName'])
+        dn = conn.entries[0].distinguishedName
+        
+        #Check if user exists and/or is archived
+        if len(conn.entries > 0):
             exists = True
-            archived = True
+            absent = False
+            if archived_base in dn:
+                archived = True
+    
+        conn.unbind()
 
-    conn.unbind()
-
-    logger.debug('check_exists_or_archived: Exists: %s, Archived: %s - Attributes: uin:%s email:%s sam:%s' % (exists, archived, uin, email, sam))
-    return {'exists' : exists, 'archived' : archived }
+    logger.debug('check_exists_or_archived: Exists: %s, Archived: %s, Absent: %s - Attributes: email:%s' % (exists, archived, absent, email))
+    return {'exists' : exists, 'archived' : archived, 'absent' : absent }
 
 
-def retrieve_username(uin,email):
+def retrieve_username(email):
    
-    status = check_exists_or_archived(uin=uin, email=email)
+    status = check_exists_or_archived(email)
 
     conn = AD_Connect_SSL()
     s_base = app.config['LDAP_SEARCH_BASE']
-    conn.search(search_base=s_base, search_filter='(&(employeeNumber='+uin+')(extensionAttribute1='+email+'))', search_scope=SUBTREE, attributes = ['sAMAccountName'])
+    conn.search(search_base=s_base, search_filter='(mail='+email+')', search_scope=SUBTREE, attributes = ['sAMAccountName'])
 
 
     if status['archived']:
-        message = 'This CS Account has been archived, however, the username is: %s. Please contact root@cs.odu.edu to de-archive.' % conn.entries[0].sAMAccountName.value
+        message = 'This account has been archived, however, the username is: %s. Please contact your Systems Administrator.' % conn.entries[0].sAMAccountName.value
         category = 'error'
     elif status['exists']:
-        message = 'Your CS Username is: %s' % conn.entries[0].sAMAccountName
+        message = 'Your username is: %s' % conn.entries[0].sAMAccountName.value
         category = 'success'
     else:
-        message = 'A CS Account associated with the email %s and the provided UIN could not be found.' % email
+        message = 'A account associated with the email: %s could not be found.' % email
         category = 'error'
 
     conn.unbind()
 
-    logger.debug('retrieve_username: Username found:%s - uin: %s email:%s' % (conn.entries[0].sAMAccountName.value, uin, email))
+    #logger.debug('retrieve_username: Username:%s - uin: %s email:%s' % (conn.entries[0].sAMAccountName.value, uin, email))
     return { 'return_message' : message, 'return_category' : category  }
 
 def get_user_attributes(sAMAccountName):
@@ -87,14 +81,14 @@ def get_user_attributes(sAMAccountName):
 
     return return_dict
 
-def determine_username(fname, lname):
+def determine_username(email, fname, lname):
 
     status = {}
     status['exists'] = True
     uniq_num = 0
 
     username = fname[0] + lname[:7]
-    status = check_exists_or_archived(sam=username)
+    status = check_exists_or_archived(email)
 
     while status['exists'] == True:
         if int(len(username)) <= 3:
@@ -218,14 +212,12 @@ def password_check(password,fname,lname,username):
 def is_admin(username):
     conn = AD_Connect_SSL()
     s_base = app.config['LDAP_BASE_DN']
-    admin_groups = app.config['APP_ADMIN_GROUPS']
-    for admin_group in admin_groups:
-        s_filter='(&(objectClass=user)(memberof:1.2.840.113556.1.4.1941:='+str(admin_group)+'))'
-        conn.search(search_base=s_base, search_filter=s_filter, search_scope=SUBTREE, attributes = ['sAMAccountName'])
-        for entry in conn.entries:
-            if entry.sAMAccountName.value == username:
-                return True
-    
+    admin_group = app.config['APP_ADMIN_GROUP']
+    s_filter='(&(objectClass=user)(memberof='+str(admin_group)+'))'
+    conn.search(search_base=s_base, search_filter=s_filter, search_scope=SUBTREE, attributes = ['sAMAccountName'])
+    for entry in conn.entries:
+        if entry.sAMAccountName.value == username:
+            return True
     return False
 
 def send_email(message,to,subject):
