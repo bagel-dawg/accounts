@@ -17,6 +17,6 @@ SMTP_TLS=
 SMTP_FROM_ADDRESS=
 SMTP_LOGIN_REQUIRED=
 SMTP_IGNORE_CERT=
-COMPANY_HOMEPAGE=bageltechnologies.com
+COMPANY_HOMEPAGE=https://bageltechnologies.com
 SUPPORT_EMAIL=support@bageltechnologies.com
 FLASK_DEBUG=1
