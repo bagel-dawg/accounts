@@ -1,3 +1,4 @@
+import os
 import logging
 import MySQLdb
 from flask import Flask
