@@ -1,9 +1,12 @@
 from flask import render_template, flash, redirect, url_for
-from app import app
+from app import app, logging
 from app.forms import LoginForm, FindUser, Account_Request, PWReset, PWChoose, Admin_User_Info_Lookup
 from helpers import helpers
 from flask_ldap3_login.forms import LDAPLoginForm
 from flask_login import LoginManager, login_user, UserMixin, current_user, logout_user, login_required
+
+logging.getLogger('accounts-routes').addHandler(logging.StreamHandler())
+logger = logging.getLogger('accounts-routes')
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
@@ -92,6 +95,8 @@ def request():
 
         token = helpers.generate_confirmation_token(email)
         confirm_url = url_for('confirm_email', token=token, _external=True)
+
+
 
         #This message should be sent as an email
         message = 'Please check your %s mailbox for a confirmation email. Validation link: %s ' % (email, confirm_url)
