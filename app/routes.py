@@ -95,13 +95,22 @@ def request():
 
         token = helpers.generate_confirmation_token(email)
         confirm_url = url_for('confirm_email', token=token, _external=True)
+      
+        
+        try:
+            helpers.send_email(subject='Account Creation Request', to=email, cc='', body=render_template('email_request_template.html'), is_html=True)
+            logger.info('No existing email: %s, continuing request process. Sending email. Validatation token: %s.' % (email, confirm_url))
 
-
-
-        #This message should be sent as an email
-        message = 'Please check your %s mailbox for a confirmation email. Validation link: %s ' % (email, confirm_url)
-        category = 'success'
-        flash(message, category=category)
+            #Send email succeeded, inform the user
+            message = 'Please check your %s mailbox for a confirmation email.' % (email)
+            category = 'success'
+            flash(message, category=category)
+        except Exception as e:
+            #Oh no! What should we do if send_email() fails?
+            logger.error(e)
+            message = 'There was an error sending your email, please contact the Administrator.'
+            category = 'error'
+            flash(message, category=category)
     
     return render_template('request.html', title='Accounts - Account Creation', form=form)
 
