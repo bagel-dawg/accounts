@@ -1,3 +1,4 @@
+import os
 import logging
 import MySQLdb
 from flask import Flask
@@ -6,9 +7,14 @@ from flask_migrate import Migrate
 from flask_login import LoginManager, login_user, UserMixin, current_user
 from flask_ldap3_login import LDAP3LoginManager
 from datetime import datetime, timedelta
+import jinja2
+
+def get_environment_variable(value, key):
+    return os.getenv(key,value)
 
 app = Flask(__name__)
 app.config.from_object(Config)
+app.jinja_env.filters['get_env'] = get_environment_variable
 
 login_manager = LoginManager(app)
 ldap_manager = LDAP3LoginManager(app)
