@@ -85,8 +85,9 @@ def request():
         #This check prevents the user from requesting accounts with the same information.
         #Email should be used as unique identifier in LDAP Directory
         #Use switch for active vs archived vs absent
-        account_status = helpers.check_exists_or_archived(current_user.email)
+        account_status = helpers.check_exists_or_archived(email)
         if account_status['exists'] == True:
+            logger.info('A user account with the email %s already exists, but an attempt was made to request a new account.' % email)
             returned = {}
             returned['return_message'] = 'An account with this email address has already been created. You may check the username using the form below.'
             returned['return_category'] = 'error'
