@@ -7,11 +7,12 @@ LDAP_PORT=389
 LDAP_BIND_USER_DN=cn=admin,dc=example,dc=com
 LDAP_BIND_USER_PW=admin
 LDAP_SEARCH_BASE=dc=example,dc=com
+LDAP_ARCHIVED_GROUP="CN=Archived Users,CN=Users,DC=example,DC=com"
 SECURITY_PASSWORD_SALT=salt
 APP_ADMIN_GROUP="CN=Accounts Admins,CN=Users,DC=example,DC=com"
-SMTP_HOST=smtp.gmail.com
-SMTP_USERNAME=ryan.m.knauer@gmail.com
-SMTP_PASSWORD=Funkeytown1!
+SMTP_HOST=smtp.example.com
+SMTP_USERNAME=user@example.com
+SMTP_PASSWORD=testpassword
 SMTP_PORT=587
 SMTP_TLS=True
 SMTP_FROM_ADDRESS=support@bageltechnologies.com
