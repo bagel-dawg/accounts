@@ -98,7 +98,7 @@ def request():
       
         
         try:
-            helpers.send_email(subject='Account Creation Request', to=email, cc='', body=render_template('email_request_template.html'), is_html=True)
+            helpers.send_email(subject='Account Creation Request', to=email, cc='', body=render_template('email_request_template.html', account_request_link=confirm_url), is_html=True)
             logger.info('No existing email: %s, continuing request process. Sending email. Validatation token: %s.' % (email, confirm_url))
 
             #Send email succeeded, inform the user

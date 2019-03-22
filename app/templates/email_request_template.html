@@ -1,0 +1,26 @@
+<html>
+    Hello,
+    <br />
+    <br />
+    You are receiving this email because an account has been requested for this email from <a href="{{ "https://example.com" | get_env('COMPANY_HOMEPAGE') }}">{{ "https://example.com" | get_env('COMPANY_HOMEPAGE') }}</a>.
+    <br />
+    If you were the one that initiated this request, you may follow the link here:
+    <br />
+    <br />
+    <a href="{{ account_request_link }}">{{ account_request_link }}</a>
+    <br />
+    <br />
+    If the above link does not work, please try pasting the link directly into your navigation bar.
+    <br />
+    If you did not request this account, you may ignore this email or report this incident to {{ "support@example.com" | get_env('SUPPORT_EMAIL') }}.
+    <br />
+    <br />
+    {{ "https://example.com" | get_env('COMPANY_HOMEPAGE') }}
+    <br />
+    {{ "support@example.com" | get_env('SUPPORT_EMAIL') }}
+    <br />
+    Account Management System
+    <br />
+    <br />
+    This is an Automated message. Do not reply.
+</html>
