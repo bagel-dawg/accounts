@@ -28,7 +28,7 @@ def check_exists_or_archived(email):
     if email:
         s_filter = '(mail='+str(email)+')'
 
-        s_base = app.config['LDAP_BASE_DN']
+        s_base = app.config['LDAP_SEARCH_BASE']
         archived_base = app.config['LDAP_ARCHIVED_BASE']
     
         conn = AD_Connect_SSL()
@@ -215,7 +215,7 @@ def password_check(password,fname,lname,username):
 
 def is_admin(username):
     conn = AD_Connect_SSL()
-    s_base = app.config['LDAP_BASE_DN']
+    s_base = app.config['LDAP_SEARCH_BASE']
     admin_group = app.config['APP_ADMIN_GROUP']
     s_filter='(&(objectClass=user)(memberof='+str(admin_group)+'))'
     conn.search(search_base=s_base, search_filter=s_filter, search_scope=SUBTREE, attributes = ['sAMAccountName'])
