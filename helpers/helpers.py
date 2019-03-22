@@ -15,9 +15,10 @@ logger = logging.getLogger('accounts-helpers')
 def AD_Connect_SSL():
   servname = app.config['LDAP_HOST']
   po = app.config['LDAP_PORT']
-  dn = app.config['LDAP_BIND_DN']
-  pw = app.config['LDAP_BIND_PW']
+  dn = app.config['LDAP_BIND_USER_DN']
+  pw = app.config['LDAP_BIND_USER_PW']
   server = Server(servname, port=int(po), use_ssl=True)
+  logger.info('Attempting to connect to %s:%s using the user account %s' % (servname,po,dn))
   return Connection(server, user=dn, password=pw, auto_bind=True, return_empty_attributes=True)
 
 
@@ -29,17 +30,16 @@ def check_exists_or_archived(email):
         s_filter = '(mail='+str(email)+')'
 
         s_base = app.config['LDAP_SEARCH_BASE']
-        archived_base = app.config['LDAP_ARCHIVED_BASE']
     
+        logger.info('Searching LDAP for mail=%s' % email)
         conn = AD_Connect_SSL()
         conn.search(search_base=s_base, search_filter=s_filter, search_scope=SUBTREE, attributes = ['distinguishedName'])
-        dn = conn.entries[0].distinguishedName
         
         #Check if user exists and/or is archived
         if len(conn.entries > 0):
             exists = True
             absent = False
-            if archived_base in dn:
+            if is_archived(email):
                 archived = True
     
         conn.unbind()
@@ -221,6 +221,17 @@ def is_admin(username):
     conn.search(search_base=s_base, search_filter=s_filter, search_scope=SUBTREE, attributes = ['sAMAccountName'])
     for entry in conn.entries:
         if entry.sAMAccountName.value == username:
+            return True
+    return False
+
+def is_archived(email):
+    conn = AD_Connect_SSL()
+    s_base = app.config['LDAP_SEARCH_BASE']
+    archived_group = app.config['LDAP_ARCHIVED_GROUP']
+    s_filter='(&(objectClass=user)(memberof='+str(archived_group)+'))'
+    conn.search(search_base=s_base, search_filter=s_filter, search_scope=SUBTREE, attributes = ['mail'])
+    for entry in conn.entries:
+        if entry.mail.value == email:
             return True
     return False
 
