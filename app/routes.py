@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for
 from app import app
 from app.forms import LoginForm, FindUser, Account_Request, PWReset, PWChoose, Admin_User_Info_Lookup
-from helpers import helpers
+import helpers
 from flask_ldap3_login.forms import LDAPLoginForm
 from flask_login import LoginManager, login_user, UserMixin, current_user, logout_user, login_required
 
